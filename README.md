@@ -11,8 +11,6 @@ Via Opera Pia 11A, I-16145, Genoa, Italy.
 activityrecognition@smartlab.ws
 www.smartlab.ws
 ==================================================================
-
-======================================================================================
 Analysis updated to 2.0 by during Data science specialization project in February 2019
 ======================================================================================
 
