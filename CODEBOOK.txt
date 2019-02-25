@@ -1,0 +1,3536 @@
+Feature Selection 
+=================
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
+
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
+
+The original features list was updated with the follwoing codes:
+
+# Data report overview
+The dataset examined has the following dimensions:
+
+
+---------------------------------
+Feature                    Result
+------------------------ --------
+Number of observations        180
+
+Number of variables            88
+---------------------------------
+
+
+
+
+# Codebook summary table
+
+------------------------------------------------------------------------------------------------------------------
+Label   Variable                                                                   Class       # unique  Missing    
+                                                                                                 values                        
+------- -------------------------------------------------------------------------- --------- ---------- --------- 
+        **[subject]**                                                              integer           30  0.00 %                
+
+        **[activity]**                                                             factor             6  0.00 %                
+
+        **[TimeBodyAccelerometerelerometer.mean...X]**                             numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometer.mean...Y]**                             numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometer.mean...Z]**                             numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometer.mean...X]**                          numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometer.mean...Y]**                          numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometer.mean...Z]**                          numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerk.mean...X]**                         numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerk.mean...Y]**                         numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerk.mean...Z]**                         numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescope.mean...X]**                                      numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescope.mean...Y]**                                      numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescope.mean...Z]**                                      numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerk.mean...X]**                                  numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerk.mean...Y]**                                  numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerk.mean...Z]**                                  numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerMagnitudenitude.mean..]**                numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometerMagnitudenitude.mean..]**             numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerkMagnitudenitude.mean..]**            numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeMagnitudenitude.mean..]**                         numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerkMagnitudenitude.mean..]**                     numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.mean...X]**                        numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.mean...Y]**                        numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.mean...Z]**                        numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.meanFreq...X]**                    numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.meanFreq...Y]**                    numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.meanFreq...Z]**                    numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.mean...X]**                    numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.mean...Y]**                    numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.mean...Z]**                    numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.meanFreq...X]**                numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.meanFreq...Y]**                numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.meanFreq...Z]**                numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.mean...X]**                                 numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.mean...Y]**                                 numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.mean...Z]**                                 numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.meanFreq...X]**                             numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.meanFreq...Y]**                             numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.meanFreq...Z]**                             numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerMagnitudenitude.mean..]**           numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerMagnitudenitude.meanFreq..]**       numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.mean..]**       numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.meanFreq..]**   numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescopeMagnitudenitude.mean..]**                    numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescopeMagnitudenitude.meanFreq..]**                numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescopeJerkMagnitudenitude.mean..]**                numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescopeJerkMagnitudenitude.meanFreq..]**            numeric          180  0.00 %                
+
+        **[Angle.TimeBodyAccelerometerelerometerMean.Gravity.]**                   numeric          180  0.00 %                
+
+        **[Angle.TimeBodyAccelerometerelerometerJerkMean..GravityMean.]**          numeric          180  0.00 %                
+
+        **[Angle.TimeBodyGyroscopescopeMean.GravityMean.]**                        numeric          180  0.00 %                
+
+        **[Angle.TimeBodyGyroscopescopeJerkMean.GravityMean.]**                    numeric          180  0.00 %                
+
+        **[Angle.X.GravityMean.]**                                                 numeric          180  0.00 %                
+
+        **[Angle.Y.GravityMean.]**                                                 numeric          180  0.00 %                
+
+        **[Angle.Z.GravityMean.]**                                                 numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometer.std...X]**                              numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometer.std...Y]**                              numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometer.std...Z]**                              numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometer.std...X]**                           numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometer.std...Y]**                           numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometer.std...Z]**                           numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerk.std...X]**                          numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerk.std...Y]**                          numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerk.std...Z]**                          numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescope.std...X]**                                       numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescope.std...Y]**                                       numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescope.std...Z]**                                       numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerk.std...X]**                                   numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerk.std...Y]**                                   numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerk.std...Z]**                                   numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerMagnitudenitude.std..]**                 numeric          180  0.00 %                
+
+        **[TimeGravityAccelerometerelerometerMagnitudenitude.std..]**              numeric          180  0.00 %                
+
+        **[TimeBodyAccelerometerelerometerJerkMagnitudenitude.std..]**             numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeMagnitudenitude.std..]**                          numeric          180  0.00 %                
+
+        **[TimeBodyGyroscopescopeJerkMagnitudenitude.std..]**                      numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.std...X]**                         numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.std...Y]**                         numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometer.std...Z]**                         numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.std...X]**                     numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.std...Y]**                     numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerk.std...Z]**                     numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.std...X]**                                  numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.std...Y]**                                  numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescope.std...Z]**                                  numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerMagnitudenitude.std..]**            numeric          180  0.00 %                
+
+        **[FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.std..]**        numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescopeMagnitudenitude.std..]**                     numeric          180  0.00 %                
+
+        **[FrequencyBodyGyroscopescopeJerkMagnitudenitude.std..]**                 numeric          180  0.00 %                
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+# Variable list
+## subject
+
+\bminione
+
+-----------------------------------
+Feature                      Result
+------------------------- ---------
+Variable type               integer
+
+Number of missing obs.      0 (0 %)
+
+Number of unique values          30
+
+Median                         15.5
+
+1st and 3rd quartiles         8; 23
+
+Min. and max.                 1; 30
+-----------------------------------
+
+
+
+
+## activity
+
+\bminione
+
+------------------------------------
+Feature                       Result
+------------------------- ----------
+Variable type                 factor
+
+Number of missing obs.       0 (0 %)
+
+Number of unique values            6
+
+Mode                        "LAYING"
+
+Reference category            LAYING
+------------------------------------
+
+
+- Observed factor levels: \"LAYING\", \"SITTING\", \"STANDING\", \"WALKING\", \"WALKING_DOWNSTAIRS\", \"WALKING_UPSTAIRS\". 
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometer.mean...X
+
+\bminione
+
+--------------------------------------
+Feature                         Result
+------------------------- ------------
+Variable type                  numeric
+
+Number of missing obs.         0 (0 %)
+
+Number of unique values            180
+
+Median                            0.28
+
+1st and 3rd quartiles       0.27; 0.28
+
+Min. and max.                0.22; 0.3
+--------------------------------------
+
+
+## TimeBodyAccelerometerelerometer.mean...Y
+
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.02
+
+1st and 3rd quartiles       -0.02; -0.01
+
+Min. and max.                   -0.04; 0
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-4-TimeBodyAccelerometerelerometer-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.045, -0.04, -0.035, 
+-0.03, -0.025, -0.02, -0.015, -0.01, -0.005), xmax = c(-0.04, 
+-0.035, -0.03, -0.025, -0.02, -0.015, -0.01, -0.005, 0), ymin = c(0, 
+0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 0L, 6L, 15L, 25L, 87L, 
+30L, 14L, 2L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-9L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometer.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometer.mean...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.11
+
+1st and 3rd quartiles        -0.11; -0.1
+
+Min. and max.               -0.15; -0.08
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-5-TimeBodyAccelerometerelerometer-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.16, -0.15, -0.14, 
+-0.13, -0.12, -0.11, -0.1, -0.09, -0.08), xmax = c(-0.15, -0.14, 
+-0.13, -0.12, -0.11, -0.1, -0.09, -0.08, -0.07), ymin = c(0, 
+0, 0, 0, 0, 0, 0, 0, 0), ymax = c(2L, 1L, 2L, 15L, 48L, 92L, 
+16L, 3L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-9L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometer.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometer.mean...X
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.92
+
+1st and 3rd quartiles        0.84; 0.94
+
+Min. and max.               -0.68; 0.97
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-6-TimeGravityAccelerometerelerometer-mean---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.8, -0.6, -0.4, -0.2, 
+0, 0.2, 0.4, 0.6, 0.8), xmax = c(-0.6, -0.4, -0.2, 0, 0.2, 0.4, 
+0.6, 0.8, 1), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(2L, 
+13L, 9L, 6L, 0L, 0L, 1L, 6L, 143L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "TimeGravityAccelerometerelerometer.mean...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometer.mean...Y
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.13
+
+1st and 3rd quartiles       -0.23; 0.09
+
+Min. and max.               -0.48; 0.96
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-7-TimeGravityAccelerometerelerometer-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), xmax = c(-0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 
+1), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(3L, 66L, 61L, 
+14L, 11L, 5L, 10L, 10L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeGravityAccelerometerelerometer.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometer.mean...Z
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.02
+
+1st and 3rd quartiles       -0.12; 0.15
+
+Min. and max.                -0.5; 0.96
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-8-TimeGravityAccelerometerelerometer-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), xmax = c(-0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 
+1), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(3L, 18L, 60L, 
+63L, 13L, 7L, 10L, 6L)), .Names = c("xmin", "xmax", "ymin", "ymax"
+), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeGravityAccelerometerelerometer.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerk.mean...X
+
+\bminione
+
+--------------------------------------
+Feature                         Result
+------------------------- ------------
+Variable type                  numeric
+
+Number of missing obs.         0 (0 %)
+
+Number of unique values            180
+
+Median                            0.08
+
+1st and 3rd quartiles       0.07; 0.08
+
+Min. and max.               0.04; 0.13
+--------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-9-TimeBodyAccelerometerelerometerJerk-mean---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(0.04, 0.05, 0.06, 0.07, 
+0.08, 0.09, 0.1, 0.11, 0.12, 0.13), xmax = c(0.05, 0.06, 0.07, 
+0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14), ymin = c(0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0), ymax = c(3L, 4L, 13L, 98L, 34L, 14L, 8L, 5L, 
+0L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-10L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerJerk.mean...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerk.mean...Y
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.01
+
+1st and 3rd quartiles           0; 0.01
+
+Min. and max.               -0.04; 0.06
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-10-TimeBodyAccelerometerelerometerJerk-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.04, -0.03, -0.02, 
+-0.01, 0, 0.01, 0.02, 0.03, 0.04, 0.05), xmax = c(-0.03, -0.02, 
+-0.01, 0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06), ymin = c(0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0), ymax = c(2L, 3L, 13L, 26L, 52L, 59L, 
+18L, 6L, 0L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-10L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerJerk.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerk.mean...Z
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                                0
+
+1st and 3rd quartiles          -0.01; 0
+
+Min. and max.               -0.07; 0.04
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-11-TimeBodyAccelerometerelerometerJerk-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.07, -0.06, -0.05, 
+-0.04, -0.03, -0.02, -0.01, 0, 0.01, 0.02, 0.03), xmax = c(-0.06, 
+-0.05, -0.04, -0.03, -0.02, -0.01, 0, 0.01, 0.02, 0.03, 0.04), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 1L, 
+    1L, 6L, 12L, 27L, 77L, 41L, 9L, 3L, 2L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -11L), class = "data.frame"), 
+    vnam = "TimeBodyAccelerometerelerometerJerk.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescope.mean...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.03
+
+1st and 3rd quartiles       -0.05; -0.02
+
+Min. and max.                -0.21; 0.19
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-12-TimeBodyGyroscopescope-mean---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.25, -0.2, -0.15, 
+-0.1, -0.05, 0, 0.05, 0.1, 0.15), xmax = c(-0.2, -0.15, -0.1, 
+-0.05, 0, 0.05, 0.1, 0.15, 0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 
+0, 0), ymax = c(1L, 2L, 18L, 20L, 113L, 11L, 13L, 1L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "TimeBodyGyroscopescope.mean...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescope.mean...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.07
+
+1st and 3rd quartiles       -0.09; -0.06
+
+Min. and max.                 -0.2; 0.03
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-13-TimeBodyGyroscopescope-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.22, -0.2, -0.18, 
+-0.16, -0.14, -0.12, -0.1, -0.08, -0.06, -0.04, -0.02, 0, 0.02
+), xmax = c(-0.2, -0.18, -0.16, -0.14, -0.12, -0.1, -0.08, -0.06, 
+-0.04, -0.02, 0, 0.02, 0.04), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0), ymax = c(1L, 1L, 2L, 5L, 5L, 12L, 38L, 72L, 23L, 
+9L, 5L, 5L, 2L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-13L), class = "data.frame"), vnam = "TimeBodyGyroscopescope.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescope.mean...Z
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.09
+
+1st and 3rd quartiles         0.07; 0.1
+
+Min. and max.               -0.07; 0.18
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-14-TimeBodyGyroscopescope-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.08, -0.06, -0.04, 
+-0.02, 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16), xmax = c(-0.06, 
+-0.04, -0.02, 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 
+0.18), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 
+1L, 1L, 3L, 2L, 4L, 11L, 36L, 74L, 23L, 8L, 13L, 3L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -13L), class = "data.frame"), 
+    vnam = "TimeBodyGyroscopescope.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerk.mean...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                              -0.1
+
+1st and 3rd quartiles        -0.1; -0.09
+
+Min. and max.               -0.16; -0.02
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-15-TimeBodyGyroscopescopeJerk-mean---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.16, -0.14, -0.12, 
+-0.1, -0.08, -0.06, -0.04), xmax = c(-0.14, -0.12, -0.1, -0.08, 
+-0.06, -0.04, -0.02), ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(10L, 
+10L, 55L, 76L, 16L, 7L, 6L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -7L), class = "data.frame"), vnam = "TimeBodyGyroscopescopeJerk.mean...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerk.mean...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.04
+
+1st and 3rd quartiles       -0.05; -0.04
+
+Min. and max.               -0.08; -0.01
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-16-TimeBodyGyroscopescopeJerk-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.08, -0.07, -0.06, 
+-0.05, -0.04, -0.03, -0.02), xmax = c(-0.07, -0.06, -0.05, -0.04, 
+-0.03, -0.02, -0.01), ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(5L, 
+5L, 21L, 78L, 62L, 6L, 3L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -7L), class = "data.frame"), vnam = "TimeBodyGyroscopescopeJerk.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerk.mean...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.05
+
+1st and 3rd quartiles       -0.06; -0.05
+
+Min. and max.               -0.09; -0.01
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-17-TimeBodyGyroscopescopeJerk-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.1, -0.09, -0.08, 
+-0.07, -0.06, -0.05, -0.04, -0.03, -0.02, -0.01), xmax = c(-0.09, 
+-0.08, -0.07, -0.06, -0.05, -0.04, -0.03, -0.02, -0.01, 0), ymin = c(0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(2L, 1L, 17L, 33L, 74L, 36L, 
+11L, 4L, 1L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-10L), class = "data.frame"), vnam = "TimeBodyGyroscopescopeJerk.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.48
+
+1st and 3rd quartiles       -0.96; -0.09
+
+Min. and max.                -0.99; 0.64
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-18-TimeBodyAccelerometerelerometerMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 
+0L, 2L, 17L, 37L, 26L, 8L, 0L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "TimeBodyAccelerometerelerometerMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometerMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.48
+
+1st and 3rd quartiles       -0.96; -0.09
+
+Min. and max.                -0.99; 0.64
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-19-TimeGravityAccelerometerelerometerMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 
+0L, 2L, 17L, 37L, 26L, 8L, 0L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "TimeGravityAccelerometerelerometerMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerkMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.82
+
+1st and 3rd quartiles       -0.98; -0.25
+
+Min. and max.                -0.99; 0.43
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-20-TimeBodyAccelerometerelerometerJerkMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 
+17L, 33L, 29L, 7L, 1L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerJerkMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.66
+
+1st and 3rd quartiles       -0.95; -0.22
+
+Min. and max.                -0.98; 0.42
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-21-TimeBodyGyroscopescopeMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 0L, 
+7L, 42L, 28L, 11L, 1L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeBodyGyroscopescopeMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerkMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.86
+
+1st and 3rd quartiles       -0.99; -0.51
+
+Min. and max.                   -1; 0.09
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-22-TimeBodyGyroscopescopeJerkMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0), xmax = c(-0.9, -0.8, 
+-0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1), ymin = c(0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 0L, 6L, 19L, 26L, 
+16L, 12L, 4L, 3L, 2L, 2L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -11L), class = "data.frame"), vnam = "TimeBodyGyroscopescopeJerkMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.mean...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.77
+
+1st and 3rd quartiles       -0.98; -0.22
+
+Min. and max.                   -1; 0.54
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-23-FrequencyBodyAccelerometerelerometer-mean---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 1L, 
+9L, 36L, 23L, 16L, 4L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometer.mean...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.mean...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.59
+
+1st and 3rd quartiles       -0.95; -0.06
+
+Min. and max.                -0.99; 0.52
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-24-FrequencyBodyAccelerometerelerometer-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 1L, 
+1L, 14L, 40L, 25L, 7L, 3L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometer.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.mean...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.72
+
+1st and 3rd quartiles       -0.96; -0.32
+
+Min. and max.                -0.99; 0.28
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-25-FrequencyBodyAccelerometerelerometer-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 28L, 40L, 
+    13L, 5L, 2L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometer.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.meanFreq...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.26
+
+1st and 3rd quartiles       -0.39; -0.06
+
+Min. and max.                -0.64; 0.16
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-26-FrequencyBodyAccelerometerelerometer-meanFreq---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.7, -0.6, -0.5, -0.4, 
+-0.3, -0.2, -0.1, 0, 0.1), xmax = c(-0.6, -0.5, -0.4, -0.3, -0.2, 
+-0.1, 0, 0.1, 0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 
+12L, 31L, 37L, 25L, 19L, 27L, 23L, 5L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometer.meanFreq...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.meanFreq...Y
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.01
+
+1st and 3rd quartiles       -0.08; 0.09
+
+Min. and max.               -0.38; 0.47
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-27-FrequencyBodyAccelerometerelerometer-meanFreq---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.4, -0.3, -0.2, -0.1, 
+0, 0.1, 0.2, 0.3, 0.4), xmax = c(-0.3, -0.2, -0.1, 0, 0.1, 0.2, 
+0.3, 0.4, 0.5), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(3L, 
+8L, 28L, 41L, 59L, 22L, 14L, 4L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometer.meanFreq...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.meanFreq...Z
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.07
+
+1st and 3rd quartiles       -0.04; 0.18
+
+Min. and max.                -0.52; 0.4
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-28-FrequencyBodyAccelerometerelerometer-meanFreq---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.6, -0.5, -0.4, -0.3, 
+-0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4), xmax = c(-0.5, -0.4, -0.3, 
+-0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5), ymin = c(0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0), ymax = c(3L, 3L, 2L, 12L, 13L, 26L, 50L, 
+34L, 28L, 8L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"
+), row.names = c(NA, -11L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometer.meanFreq...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.mean...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.81
+
+1st and 3rd quartiles       -0.98; -0.28
+
+Min. and max.                -0.99; 0.47
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-29-FrequencyBodyAccelerometerelerometerJerk-mean---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 
+21L, 35L, 23L, 6L, 2L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerk.mean...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.mean...Y
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.78
+
+1st and 3rd quartiles       -0.97; -0.2
+
+Min. and max.               -0.99; 0.28
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-30-FrequencyBodyAccelerometerelerometerJerk-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 14L, 28L, 
+    34L, 9L, 3L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerk.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.mean...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.87
+
+1st and 3rd quartiles       -0.98; -0.47
+
+Min. and max.                -0.99; 0.16
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-31-FrequencyBodyAccelerometerelerometerJerk-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999, 
+0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+0L, 6L, 17L, 15L, 17L, 16L, 11L, 3L, 2L, 2L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -12L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometerJerk.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.meanFreq...X
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.06
+
+1st and 3rd quartiles       -0.29; 0.18
+
+Min. and max.               -0.58; 0.33
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-32-FrequencyBodyAccelerometerelerometerJerk-meanFreq---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.6, -0.5, -0.4, -0.3, 
+-0.2, -0.1, 0, 0.1, 0.2, 0.3), xmax = c(-0.5, -0.4, -0.3, -0.2, 
+-0.1, 0, 0.1, 0.2, 0.3, 0.4), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0), ymax = c(3L, 12L, 29L, 34L, 10L, 5L, 20L, 33L, 29L, 5L
+)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-10L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerk.meanFreq...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.meanFreq...Y
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.23
+
+1st and 3rd quartiles       -0.4; -0.05
+
+Min. and max.                 -0.6; 0.2
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-33-FrequencyBodyAccelerometerelerometerJerk-meanFreq---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.7, -0.6, -0.5, -0.4, 
+-0.3, -0.2, -0.1, 0, 0.1), xmax = c(-0.6, -0.5, -0.4, -0.3, -0.2, 
+-0.1, 0, 0.1, 0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 
+13L, 31L, 28L, 25L, 20L, 34L, 24L, 4L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometerJerk.meanFreq...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.meanFreq...Z
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.09
+
+1st and 3rd quartiles       -0.31; 0.04
+
+Min. and max.               -0.63; 0.23
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-34-FrequencyBodyAccelerometerelerometerJerk-meanFreq---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.7, -0.6, -0.5, -0.4, 
+-0.3, -0.2, -0.1, 0, 0.1, 0.2), xmax = c(-0.6, -0.5, -0.4, -0.3, 
+-0.2, -0.1, 0, 0.1, 0.2, 0.3), ymin = c(0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0), ymax = c(3L, 8L, 14L, 25L, 15L, 21L, 28L, 51L, 14L, 
+1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-10L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerk.meanFreq...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.mean...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.73
+
+1st and 3rd quartiles       -0.97; -0.34
+
+Min. and max.                -0.99; 0.47
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-35-FrequencyBodyGyroscopescope-mean---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 1L, 
+29L, 41L, 16L, 1L, 1L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyGyroscopescope.mean...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.mean...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.81
+
+1st and 3rd quartiles       -0.97; -0.45
+
+Min. and max.                -0.99; 0.33
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-36-FrequencyBodyGyroscopescope-mean---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 13L, 38L, 22L, 
+    10L, 6L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "FrequencyBodyGyroscopescope.mean...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.mean...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.79
+
+1st and 3rd quartiles       -0.96; -0.26
+
+Min. and max.                -0.99; 0.49
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-37-FrequencyBodyGyroscopescope-mean---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 
+17L, 41L, 21L, 6L, 2L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyGyroscopescope.mean...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.meanFreq...X
+
+\bminione
+
+--------------------------------------
+Feature                         Result
+------------------------- ------------
+Variable type                  numeric
+
+Number of missing obs.         0 (0 %)
+
+Number of unique values            180
+
+Median                           -0.12
+
+1st and 3rd quartiles         -0.21; 0
+
+Min. and max.               -0.4; 0.25
+--------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-38-FrequencyBodyGyroscopescope-meanFreq---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.4, -0.3, -0.2, -0.1, 
+0, 0.1, 0.2), xmax = c(-0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3), ymin = c(0, 
+0, 0, 0, 0, 0, 0), ymax = c(14L, 37L, 50L, 33L, 22L, 20L, 4L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -7L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescope.meanFreq...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.meanFreq...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.16
+
+1st and 3rd quartiles       -0.29; -0.04
+
+Min. and max.                -0.67; 0.27
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-39-FrequencyBodyGyroscopescope-meanFreq---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.7, -0.6, -0.5, -0.4, 
+-0.3, -0.2, -0.1, 0, 0.1, 0.2), xmax = c(-0.6, -0.5, -0.4, -0.3, 
+-0.2, -0.1, 0, 0.1, 0.2, 0.3), ymin = c(0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0), ymax = c(3L, 4L, 9L, 27L, 24L, 51L, 29L, 23L, 7L, 3L
+)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-10L), class = "data.frame"), vnam = "FrequencyBodyGyroscopescope.meanFreq...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.meanFreq...Z
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.05
+
+1st and 3rd quartiles       -0.15; 0.04
+
+Min. and max.               -0.51; 0.38
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-40-FrequencyBodyGyroscopescope-meanFreq---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.6, -0.5, -0.4, -0.3, 
+-0.2, -0.1, 0, 0.1, 0.2, 0.3), xmax = c(-0.5, -0.4, -0.3, -0.2, 
+-0.1, 0, 0.1, 0.2, 0.3, 0.4), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0), ymax = c(2L, 4L, 7L, 19L, 38L, 42L, 38L, 18L, 9L, 3L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -10L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescope.meanFreq...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.67
+
+1st and 3rd quartiles       -0.96; -0.16
+
+Min. and max.                -0.99; 0.59
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-41-FrequencyBodyAccelerometerelerometerMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 1L, 
+10L, 31L, 22L, 16L, 9L, 2L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerMagnitudenitude.meanFreq..
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.08
+
+1st and 3rd quartiles       -0.01; 0.17
+
+Min. and max.               -0.31; 0.44
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-42-FrequencyBodyAccelerometerelerometerMagnitudenitude-meanFreq--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.4, -0.3, -0.2, -0.1, 
+0, 0.1, 0.2, 0.3, 0.4), xmax = c(-0.3, -0.2, -0.1, 0, 0.1, 0.2, 
+0.3, 0.4, 0.5), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 
+3L, 16L, 33L, 52L, 40L, 26L, 8L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometerMagnitudenitude.meanFreq..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.79
+
+1st and 3rd quartiles       -0.98; -0.19
+
+Min. and max.                -0.99; 0.54
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-43-FrequencyBodyAccelerometerelerometerJerkMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 1L, 
+16L, 25L, 26L, 17L, 4L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.meanFreq..
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.17
+
+1st and 3rd quartiles        0.05; 0.28
+
+Min. and max.               -0.13; 0.49
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-44-FrequencyBodyAccelerometerelerometerJerkMagnitudenitude-meanFreq--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.15, -0.1, -0.05, 
+0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45), xmax = c(-0.1, 
+-0.05, 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5
+), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(3L, 
+6L, 18L, 21L, 16L, 19L, 24L, 18L, 20L, 18L, 12L, 3L, 2L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -13L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.meanFreq..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescopeMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.77
+
+1st and 3rd quartiles       -0.96; -0.41
+
+Min. and max.                 -0.99; 0.2
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-45-FrequencyBodyGyroscopescopeMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 
+0.3), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(88L, 
+2L, 0L, 8L, 20L, 18L, 22L, 9L, 4L, 5L, 1L, 2L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -13L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescopeMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescopeMagnitudenitude.meanFreq..
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.05
+
+1st and 3rd quartiles       -0.17; 0.08
+
+Min. and max.               -0.46; 0.41
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-46-FrequencyBodyGyroscopescopeMagnitudenitude-meanFreq--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.5, -0.4, -0.3, -0.2, 
+-0.1, 0, 0.1, 0.2, 0.3, 0.4), xmax = c(-0.4, -0.3, -0.2, -0.1, 
+0, 0.1, 0.2, 0.3, 0.4, 0.5), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0), ymax = c(2L, 9L, 17L, 48L, 34L, 27L, 21L, 13L, 7L, 2L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -10L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescopeMagnitudenitude.meanFreq..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescopeJerkMagnitudenitude.mean..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.88
+
+1st and 3rd quartiles       -0.98; -0.58
+
+Min. and max.                   -1; 0.15
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-47-FrequencyBodyGyroscopescopeJerkMagnitudenitude-mean--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999, 
+0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+2L, 15L, 22L, 18L, 15L, 6L, 5L, 4L, 1L, 1L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -12L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescopeJerkMagnitudenitude.mean..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescopeJerkMagnitudenitude.meanFreq..
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.11
+
+1st and 3rd quartiles        0.05; 0.21
+
+Min. and max.               -0.18; 0.43
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-48-FrequencyBodyGyroscopescopeJerkMagnitudenitude-meanFreq--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.2, -0.15, -0.1, -0.05, 
+0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4), xmax = c(-0.15, 
+-0.1, -0.05, 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45
+), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 
+4L, 5L, 8L, 23L, 40L, 25L, 23L, 28L, 12L, 9L, 1L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -13L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescopeJerkMagnitudenitude.meanFreq..")
+```
+\emini
+
+
+
+
+\fullline
+
+## Angle.TimeBodyAccelerometerelerometerMean.Gravity.
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.01
+
+1st and 3rd quartiles       -0.01; 0.02
+
+Min. and max.               -0.16; 0.13
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-49-Angle-TimeBodyAccelerometerelerometerMean-Gravity-', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.2, -0.15, -0.1, -0.05, 
+0, 0.05, 0.1), xmax = c(-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15
+), ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(1L, 3L, 7L, 56L, 91L, 
+20L, 2L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "Angle.TimeBodyAccelerometerelerometerMean.Gravity.")
+```
+\emini
+
+
+
+
+\fullline
+
+## Angle.TimeBodyAccelerometerelerometerJerkMean..GravityMean.
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                                0
+
+1st and 3rd quartiles       -0.02; 0.02
+
+Min. and max.                -0.12; 0.2
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-50-Angle-TimeBodyAccelerometerelerometerJerkMean--GravityMean-', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.15, -0.1, -0.05, 
+0, 0.05, 0.1, 0.15, 0.2), xmax = c(-0.1, -0.05, 0, 0.05, 0.1, 
+0.15, 0.2, 0.25), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(3L, 
+17L, 62L, 84L, 11L, 2L, 0L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -8L), class = "data.frame"), 
+    vnam = "Angle.TimeBodyAccelerometerelerometerJerkMean..GravityMean.")
+```
+\emini
+
+
+
+
+\fullline
+
+## Angle.TimeBodyGyroscopescopeMean.GravityMean.
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.02
+
+1st and 3rd quartiles       -0.02; 0.06
+
+Min. and max.               -0.39; 0.44
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-51-Angle-TimeBodyGyroscopescopeMean-GravityMean-', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.4, -0.3, -0.2, -0.1, 
+0, 0.1, 0.2, 0.3, 0.4), xmax = c(-0.3, -0.2, -0.1, 0, 0.1, 0.2, 
+0.3, 0.4, 0.5), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(6L, 
+9L, 7L, 39L, 87L, 14L, 9L, 8L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "Angle.TimeBodyGyroscopescopeMean.GravityMean.")
+```
+\emini
+
+
+
+
+\fullline
+
+## Angle.TimeBodyGyroscopescopeJerkMean.GravityMean.
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.02
+
+1st and 3rd quartiles       -0.06; 0.03
+
+Min. and max.               -0.22; 0.18
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-52-Angle-TimeBodyGyroscopescopeJerkMean-GravityMean-', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-0.25, -0.2, -0.15, 
+-0.1, -0.05, 0, 0.05, 0.1, 0.15), xmax = c(-0.2, -0.15, -0.1, 
+-0.05, 0, 0.05, 0.1, 0.15, 0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 
+0, 0), ymax = c(3L, 3L, 10L, 38L, 48L, 41L, 25L, 7L, 5L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "Angle.TimeBodyGyroscopescopeJerkMean.GravityMean.")
+```
+\emini
+
+
+
+
+\fullline
+
+## Angle.X.GravityMean.
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.74
+
+1st and 3rd quartiles       -0.79; -0.58
+
+Min. and max.                -0.95; 0.74
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-53-Angle-X-GravityMean-', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(41L, 
+90L, 17L, 2L, 0L, 0L, 7L, 16L, 7L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "Angle.X.GravityMean.")
+```
+\emini
+
+
+
+
+\fullline
+
+## Angle.Y.GravityMean.
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.17
+
+1st and 3rd quartiles        0.02; 0.24
+
+Min. and max.               -0.87; 0.42
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-54-Angle-Y-GravityMean-', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(3L, 5L, 
+12L, 6L, 17L, 60L, 76L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "Angle.Y.GravityMean.")
+```
+\emini
+
+
+
+
+\fullline
+
+## Angle.Z.GravityMean.
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                             0.01
+
+1st and 3rd quartiles       -0.08; 0.11
+
+Min. and max.               -0.87; 0.39
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-55-Angle-Z-GravityMean-', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(2L, 7L, 10L, 10L, 
+    58L, 81L, 12L)), .Names = c("xmin", "xmax", "ymin", "ymax"
+), row.names = c(NA, -7L), class = "data.frame"), vnam = "Angle.Z.GravityMean.")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometer.std...X
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.75
+
+1st and 3rd quartiles       -0.98; -0.2
+
+Min. and max.                  -1; 0.63
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-56-TimeBodyAccelerometerelerometer-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+0L, 8L, 37L, 20L, 16L, 7L, 1L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "TimeBodyAccelerometerelerometer.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometer.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.51
+
+1st and 3rd quartiles       -0.94; -0.03
+
+Min. and max.                -0.99; 0.62
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-57-TimeBodyAccelerometerelerometer-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 
+1L, 0L, 10L, 43L, 24L, 10L, 2L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "TimeBodyAccelerometerelerometer.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometer.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.65
+
+1st and 3rd quartiles       -0.95; -0.23
+
+Min. and max.                -0.99; 0.61
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-58-TimeBodyAccelerometerelerometer-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 
+1L, 15L, 42L, 20L, 10L, 1L, 1L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "TimeBodyAccelerometerelerometer.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometer.std...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.97
+
+1st and 3rd quartiles       -0.98; -0.95
+
+Min. and max.                  -1; -0.83
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-59-TimeGravityAccelerometerelerometer-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.98, -0.96, -0.94, 
+-0.92, -0.9, -0.88, -0.86, -0.84), xmax = c(-0.98, -0.96, -0.94, 
+-0.92, -0.9, -0.88, -0.86, -0.84, -0.82), ymin = c(0, 0, 0, 0, 
+0, 0, 0, 0, 0), ymax = c(55L, 52L, 52L, 12L, 4L, 3L, 1L, 0L, 
+1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-9L), class = "data.frame"), vnam = "TimeGravityAccelerometerelerometer.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometer.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.96
+
+1st and 3rd quartiles       -0.97; -0.94
+
+Min. and max.               -0.99; -0.64
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-60-TimeGravityAccelerometerelerometer-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.95, -0.9, -0.85, 
+-0.8, -0.75, -0.7, -0.65), xmax = c(-0.95, -0.9, -0.85, -0.8, 
+-0.75, -0.7, -0.65, -0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), 
+    ymax = c(107L, 72L, 0L, 0L, 0L, 0L, 0L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -8L), class = "data.frame"), 
+    vnam = "TimeGravityAccelerometerelerometer.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometer.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.95
+
+1st and 3rd quartiles       -0.96; -0.92
+
+Min. and max.               -0.99; -0.61
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-61-TimeGravityAccelerometerelerometer-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.95, -0.9, -0.85, 
+-0.8, -0.75, -0.7, -0.65), xmax = c(-0.95, -0.9, -0.85, -0.8, 
+-0.75, -0.7, -0.65, -0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), 
+    ymax = c(79L, 76L, 23L, 1L, 0L, 0L, 0L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -8L), class = "data.frame"), 
+    vnam = "TimeGravityAccelerometerelerometer.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerk.std...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.81
+
+1st and 3rd quartiles       -0.98; -0.22
+
+Min. and max.                -0.99; 0.54
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-62-TimeBodyAccelerometerelerometerJerk-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 
+15L, 31L, 26L, 13L, 2L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerJerk.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerk.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.78
+
+1st and 3rd quartiles       -0.97; -0.15
+
+Min. and max.                -0.99; 0.36
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-63-TimeBodyAccelerometerelerometerJerk-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 1L, 10L, 28L, 
+    32L, 12L, 7L)), .Names = c("xmin", "xmax", "ymin", "ymax"
+), row.names = c(NA, -7L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerJerk.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerk.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.88
+
+1st and 3rd quartiles       -0.98; -0.51
+
+Min. and max.                -0.99; 0.03
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-64-TimeBodyAccelerometerelerometerJerk-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0), xmax = c(-0.9, -0.8, 
+-0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1), ymin = c(0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 1L, 11L, 16L, 19L, 
+18L, 16L, 2L, 3L, 3L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -11L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerJerk.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescope.std...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.79
+
+1st and 3rd quartiles       -0.97; -0.44
+
+Min. and max.                -0.99; 0.27
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-65-TimeBodyGyroscopescope-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 4L, 51L, 31L, 
+    3L, 0L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "TimeBodyGyroscopescope.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescope.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                              -0.8
+
+1st and 3rd quartiles       -0.96; -0.42
+
+Min. and max.                -0.99; 0.48
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-66-TimeBodyGyroscopescope-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 6L, 
+43L, 18L, 12L, 8L, 2L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeBodyGyroscopescope.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescope.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                              -0.8
+
+1st and 3rd quartiles       -0.96; -0.31
+
+Min. and max.                -0.99; 0.56
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-67-TimeBodyGyroscopescope-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 
+20L, 42L, 20L, 3L, 2L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeBodyGyroscopescope.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerk.std...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.84
+
+1st and 3rd quartiles       -0.98; -0.46
+
+Min. and max.                   -1; 0.18
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-68-TimeBodyGyroscopescopeJerk-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999, 
+0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+0L, 3L, 13L, 20L, 18L, 14L, 15L, 4L, 0L, 2L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -12L), class = "data.frame"), 
+    vnam = "TimeBodyGyroscopescopeJerk.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerk.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.89
+
+1st and 3rd quartiles       -0.98; -0.59
+
+Min. and max.                    -1; 0.3
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-69-TimeBodyGyroscopescopeJerk-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(97L, 36L, 30L, 10L, 
+    5L, 1L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "TimeBodyGyroscopescopeJerk.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerk.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.86
+
+1st and 3rd quartiles       -0.98; -0.47
+
+Min. and max.                   -1; 0.19
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-70-TimeBodyGyroscopescopeJerk-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999, 
+0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+0L, 4L, 14L, 18L, 20L, 17L, 8L, 4L, 1L, 2L, 2L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -12L), class = "data.frame"), 
+    vnam = "TimeBodyGyroscopescopeJerk.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.61
+
+1st and 3rd quartiles       -0.94; -0.21
+
+Min. and max.                -0.99; 0.43
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-71-TimeBodyAccelerometerelerometerMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(88L, 2L, 
+12L, 34L, 21L, 13L, 8L, 2L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeGravityAccelerometerelerometerMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.61
+
+1st and 3rd quartiles       -0.94; -0.21
+
+Min. and max.                -0.99; 0.43
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-72-TimeGravityAccelerometerelerometerMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(88L, 2L, 
+12L, 34L, 21L, 13L, 8L, 2L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeGravityAccelerometerelerometerMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyAccelerometerelerometerJerkMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                              -0.8
+
+1st and 3rd quartiles       -0.98; -0.22
+
+Min. and max.                -0.99; 0.45
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-73-TimeBodyAccelerometerelerometerJerkMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 1L, 
+20L, 26L, 26L, 12L, 4L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "TimeBodyAccelerometerelerometerJerkMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.74
+
+1st and 3rd quartiles       -0.95; -0.36
+
+Min. and max.                 -0.98; 0.3
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-74-TimeBodyGyroscopescopeMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 32L, 38L, 
+    14L, 2L, 2L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "TimeBodyGyroscopescopeMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## TimeBodyGyroscopescopeJerkMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.88
+
+1st and 3rd quartiles       -0.98; -0.58
+
+Min. and max.                   -1; 0.25
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-75-TimeBodyGyroscopescopeJerkMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 
+0.3), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+3L, 15L, 20L, 21L, 14L, 5L, 5L, 3L, 2L, 1L, 0L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -13L), class = "data.frame"), 
+    vnam = "TimeBodyGyroscopescopeJerkMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.std...X
+
+\bminione
+
+---------------------------------------
+Feature                          Result
+------------------------- -------------
+Variable type                   numeric
+
+Number of missing obs.          0 (0 %)
+
+Number of unique values             180
+
+Median                            -0.75
+
+1st and 3rd quartiles       -0.98; -0.2
+
+Min. and max.                  -1; 0.66
+---------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-76-FrequencyBodyAccelerometerelerometer-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+0L, 7L, 37L, 22L, 13L, 7L, 3L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometer.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.51
+
+1st and 3rd quartiles       -0.94; -0.08
+
+Min. and max.                -0.99; 0.56
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-77-FrequencyBodyAccelerometerelerometer-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 1L, 
+0L, 14L, 41L, 24L, 8L, 3L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometer.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometer.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.64
+
+1st and 3rd quartiles       -0.95; -0.27
+
+Min. and max.                -0.99; 0.69
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-78-FrequencyBodyAccelerometerelerometer-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(89L, 
+1L, 19L, 40L, 19L, 9L, 1L, 1L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometer.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.std...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.83
+
+1st and 3rd quartiles       -0.98; -0.25
+
+Min. and max.                   -1; 0.48
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-79-FrequencyBodyAccelerometerelerometerJerk-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 
+21L, 30L, 25L, 11L, 0L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerk.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.79
+
+1st and 3rd quartiles       -0.97; -0.17
+
+Min. and max.                -0.99; 0.35
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-80-FrequencyBodyAccelerometerelerometerJerk-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 11L, 28L, 
+    33L, 9L, 7L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerk.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerk.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                              -0.9
+
+1st and 3rd quartiles       -0.98; -0.54
+
+Min. and max.               -0.99; -0.01
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-81-FrequencyBodyAccelerometerelerometerJerk-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1), xmax = c(-0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0), ymin = c(0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0), ymax = c(90L, 2L, 13L, 20L, 22L, 15L, 10L, 
+3L, 1L, 4L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-10L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerk.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.std...X
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.81
+
+1st and 3rd quartiles       -0.98; -0.48
+
+Min. and max.                 -0.99; 0.2
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-82-FrequencyBodyGyroscopescope-std---X', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999, 
+0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(85L, 
+5L, 1L, 10L, 28L, 21L, 22L, 6L, 1L, 0L, 0L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -12L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescope.std...X")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.std...Y
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                              -0.8
+
+1st and 3rd quartiles       -0.96; -0.42
+
+Min. and max.                -0.99; 0.65
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-83-FrequencyBodyGyroscopescope-std---Y', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4, 0.6), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 
+0.2, 0.4, 0.6, 0.8), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 
+4L, 42L, 21L, 12L, 8L, 2L, 0L, 1L)), .Names = c("xmin", "xmax", 
+"ymin", "ymax"), row.names = c(NA, -9L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescope.std...Y")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescope.std...Z
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.82
+
+1st and 3rd quartiles       -0.96; -0.39
+
+Min. and max.                -0.99; 0.52
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-84-FrequencyBodyGyroscopescope-std---Z', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2, 0.4), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 
+0.4, 0.6), ymin = c(0, 0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 5L, 
+37L, 36L, 6L, 4L, 1L, 1L)), .Names = c("xmin", "xmax", "ymin", 
+"ymax"), row.names = c(NA, -8L), class = "data.frame"), vnam = "FrequencyBodyGyroscopescope.std...Z")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.65
+
+1st and 3rd quartiles       -0.95; -0.37
+
+Min. and max.                -0.99; 0.18
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-85-FrequencyBodyAccelerometerelerometerMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.0999999999999999, 
+0.2), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(82L, 
+6L, 1L, 3L, 13L, 20L, 20L, 8L, 8L, 9L, 7L, 3L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -12L), class = "data.frame"), 
+    vnam = "FrequencyBodyAccelerometerelerometerMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.81
+
+1st and 3rd quartiles       -0.98; -0.27
+
+Min. and max.                -0.99; 0.32
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-86-FrequencyBodyAccelerometerelerometerJerkMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(90L, 1L, 25L, 22L, 
+    27L, 12L, 3L)), .Names = c("xmin", "xmax", "ymin", "ymax"
+), row.names = c(NA, -7L), class = "data.frame"), vnam = "FrequencyBodyAccelerometerelerometerJerkMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescopeMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.77
+
+1st and 3rd quartiles       -0.95; -0.43
+
+Min. and max.                -0.98; 0.24
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-87-FrequencyBodyGyroscopescopeMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.9, -0.8, -0.7, 
+-0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2), xmax = c(-0.9, 
+-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 
+0.3), ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), ymax = c(80L, 
+10L, 1L, 6L, 18L, 24L, 23L, 7L, 7L, 2L, 1L, 0L, 1L)), .Names = c("xmin", 
+"xmax", "ymin", "ymax"), row.names = c(NA, -13L), class = "data.frame"), 
+    vnam = "FrequencyBodyGyroscopescopeMagnitudenitude.std..")
+```
+\emini
+
+
+
+
+\fullline
+
+## FrequencyBodyGyroscopescopeJerkMagnitudenitude.std..
+
+\bminione
+
+----------------------------------------
+Feature                           Result
+------------------------- --------------
+Variable type                    numeric
+
+Number of missing obs.           0 (0 %)
+
+Number of unique values              180
+
+Median                             -0.89
+
+1st and 3rd quartiles       -0.98; -0.61
+
+Min. and max.                   -1; 0.29
+----------------------------------------
+
+
+\emini
+\bminitwo
+```{r 'Var-88-FrequencyBodyGyroscopescopeJerkMagnitudenitude-std--', echo=FALSE, fig.width=4, fig.height=3, message=FALSE, warning=FALSE}
+ggAggHist(data = structure(list(xmin = c(-1, -0.8, -0.6, -0.4, 
+-0.2, 0, 0.2), xmax = c(-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4), 
+    ymin = c(0, 0, 0, 0, 0, 0, 0), ymax = c(94L, 41L, 29L, 10L, 
+    5L, 0L, 1L)), .Names = c("xmin", "xmax", "ymin", "ymax"), row.names = c(NA, 
+-7L), class = "data.frame"), vnam = "FrequencyBodyGyroscopescopeJerkMagnitudenitude.std..")
+```
+\emini
+
+
+
+
