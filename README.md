@@ -50,7 +50,7 @@ The dataset includes the following files:
 
 The following files are available for the train and test data. Their descriptions are equivalent. 
 
-- 'tidydata.txt': Tidy dataset who merges the training and the test sets to create one data set containing the average of each variable for each activity and each subject.
+- 'df_final.txt': Tidy dataset who merges the training and the test sets to create one data set containing the average of each variable for each activity and each subject.
 
 - 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
 
